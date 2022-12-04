@@ -13,11 +13,14 @@ import java.util.List;
 public interface IEmailDao {
 
     //通过点击新增向数据库中的电子邮箱表插入数据
-    int insertAddress(Email email);
+    int insertEmail(Email email);
 
     //通过电子邮箱表的id去修改默认值
     int updateByid(Email email);
 
     //通过企业id得到电子邮箱
-    List<Email> selectEmail(Email email);
+    List<Email> selectEmail(int enterpriseid);
+
+    //通过企业ID得到电子邮箱
+    Email selectone(int enterpriseid,String defaultstatus);
 }

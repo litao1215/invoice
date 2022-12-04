@@ -17,4 +17,10 @@ public interface IOrderDao {
 
     //修改开票状态
     int updateOrder(Order order);
+
+    //根据企业id查找已开票的发票总金额
+    Order selectorderById(int enterpriseid);
+
+    //根据企业id查找未开票的发票总金额
+    Order selectorderById1(int enterpriseid);
 }

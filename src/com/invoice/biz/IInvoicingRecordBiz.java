@@ -23,4 +23,7 @@ public interface IInvoicingRecordBiz {
 
     //查询在开票记录表里新增是否成功
     boolean addInvoicingRecord(InvoicingRecord invoicingRecord);
+
+    //根据企业id查找发票总金额
+    InvoicingRecord queryamountById(InvoicingRecord invoicingRecord);
 }

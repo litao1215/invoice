@@ -19,5 +19,8 @@ public interface IEmailBiz {
     boolean modifyEmail(Email email);
 
     //通过企业id得到电子邮箱
-    List<Email> queryEmail(Email email);
+    List<Email> queryEmail(int enterpriseid);
+
+    //通过企业id查找一个对象
+    Email queryByEid(int enterpriseid,String defaultstatus);
 }

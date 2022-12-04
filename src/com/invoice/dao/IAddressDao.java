@@ -15,9 +15,13 @@ public interface IAddressDao {
     //通过点击新增向数据库中的邮件地址表插入数据
     int insertAddress(Address address);
 
+        //通过企业ID查询对象
+    Address selectByEid(int enterpriseid,String defaultstatus);
+
     //通过邮寄地址表的id去修改默认值
     int updateByid(Address address);
 
     //通过企业id得到详细地址
-    List<Address> selectAddress(Address address);
+    List<Address> selectAddress(int enterpriseid);
+
 }

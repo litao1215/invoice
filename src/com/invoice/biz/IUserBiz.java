@@ -10,4 +10,5 @@ public interface IUserBiz {
 
     //判断登录是否成功
     Boolean queryUser(String account, String password);
+
 }

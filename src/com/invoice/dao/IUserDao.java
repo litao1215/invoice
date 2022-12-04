@@ -12,4 +12,5 @@ public interface IUserDao {
 
     //通过账号和密码查询数据库
     User selectUser(String account,String password);
+
 }

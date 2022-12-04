@@ -23,4 +23,7 @@ public interface IInvoicingRecordDao {
 
     //提交之后在开票记录表里新增对象
     int insertInvoicingRecord(InvoicingRecord invoicingRecord);
+
+    //根据企业id查找发票总金额
+    InvoicingRecord selectamountById(int enterpriseid);
 }

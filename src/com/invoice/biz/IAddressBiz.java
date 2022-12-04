@@ -15,9 +15,12 @@ public interface IAddressBiz {
     //判断是否新增成功
     boolean addAddress(Address address);
 
+    //通过企业ID查找一个对象
+    Address queryByEid(int enterpriseid,String defaultstatus);
+
     //判断是否修改成功
     boolean modifyAddress(Address address);
 
     //通过企业id得到详细地址
-    List<Address> queryAddress(Address address);
+    List<Address> queryAddress(int enterpriseid);
 }

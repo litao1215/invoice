@@ -22,7 +22,7 @@
             font-size: 18px
         }
 
-        .loginBtn > div {
+        .loginBtn > div >button{
             width: 100%;
             height: 40px;
             text-align: center;
@@ -45,22 +45,31 @@
             </div>
         </div>
         <div class="am-u-sm-10 login-am-center">
-            <form class="am-form">
+            <form action="login" method="get" class="am-form" name="myform">
                 <fieldset>
                     <div class="am-form-group">
-                        <input type="email" class="" id="doc-ipt-email-1" placeholder="请输入账号">
+                        <input type="text" name="account" class="" id="doc-ipt-email-1" placeholder="请输入账号">
                     </div>
                     <div class="am-form-group">
-                        <input type="password" class="" id="doc-ipt-pwd-1" placeholder="请输入密码">
+                        <input type="password" name="password" class="" id="doc-ipt-pwd-1" placeholder="请输入密码">
                     </div>
-                    <a href="invoice-list.jsp" class="loginBtn">
-                        <div>登 录</div>
+                    <a class="loginBtn">
+                        <div>
+                            <button type="submit">登 录</button>
+                            </div>
                     </a>
                 </fieldset>
             </form>
         </div>
     </div>
 </div>
+<script>
+    //取出传回来的参数error并与yes比较
+    var error ='<%=request.getParameter("error")%>';
+    if(error=='yes'){
+        alert("登录失败!");
+    }
+</script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>

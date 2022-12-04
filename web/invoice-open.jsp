@@ -36,7 +36,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span>
+                    <span class="tpl-header-list-user-nick" name="name"></span>
                     <span class="tpl-header-list-user-ico">
               <img src="assets/img/user01.png">
             </span>
@@ -580,6 +580,11 @@
     var showDiv = document.getElementById('showDiv')
     var resultDiv = document.getElementById('resultDiv')
     resultDiv.style.display = 'none';
+
+    //用户名
+    var name = "${u.name}";
+    $("[name=name]").text(name);
+
     // 提交按钮
     $(function () {
         $('#submitBtn').on('click', function () {

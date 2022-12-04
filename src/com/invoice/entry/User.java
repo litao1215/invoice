@@ -10,7 +10,7 @@ package com.invoice.entry;
 public class User {
     private int id;//主键
     private String name;//用户名
-    private String enterpriseid;//企业id
+    private int enterpriseid;//企业id
     private String phone;//手机号
     private String account;//账号
     private String password;//密码
@@ -20,7 +20,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, String enterpriseid, String phone, String account, String password, String idcardname, String idcardno) {
+    public User(int id, String name, int enterpriseid, String phone, String account, String password, String idcardname, String idcardno) {
         this.id = id;
         this.name = name;
         this.enterpriseid = enterpriseid;
@@ -47,11 +47,11 @@ public class User {
         this.name = name;
     }
 
-    public String getEnterpriseid() {
+    public int getEnterpriseid() {
         return enterpriseid;
     }
 
-    public void setEnterpriseid(String enterpriseid) {
+    public void setEnterpriseid(int enterpriseid) {
         this.enterpriseid = enterpriseid;
     }
 
@@ -100,7 +100,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", enterpriseid='" + enterpriseid + '\'' +
+                ", enterpriseid=" + enterpriseid +
                 ", phone='" + phone + '\'' +
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +

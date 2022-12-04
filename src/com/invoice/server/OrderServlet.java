@@ -9,10 +9,10 @@ import java.io.IOException;
 /**
  * @PROJECT_NAME: invoice
  * @DESCRIPTION:
- * @USER: ASUS
- * @DATE: 2022/12/1 11:12
+ * @USER: DuanWenlei
+ * @DATE: 2022/12/1 21:32
  */
-public class TestServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

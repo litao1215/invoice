@@ -22,7 +22,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
-                    <span class="tpl-header-list-user-nick">禁言小张</span><span class="tpl-header-list-user-ico"> <img
+                    <span class="tpl-header-list-user-nick" name="name"></span><span class="tpl-header-list-user-ico"> <img
                         src="assets/img/user01.png"></span>
                 </a>
                 <ul class="am-dropdown-content">
@@ -94,7 +94,7 @@
                             <div class="am-u-sm-12 am-u-md-3">
                                 <div class="am-u-sm-12" style="text-align: center;font-weight: bold;">
                                     <div>可开票金额</div>
-                                    <div style="color: red;font-size: 20px;">10,000,0.00元</div>
+                                    <div style="color: red;font-size: 20px;">${order1.totalamount}元</div>
                                 </div>
                             </div>
                             <div class="am-u-sm-12 am-u-md-1">
@@ -105,7 +105,7 @@
                             <div class="am-u-sm-12 am-u-md-3">
                                 <div class="am-u-sm-12" style="text-align: center;font-weight: bold;">
                                     <div>总计可开票金额</div>
-                                    <div style="color: red;font-size: 20px;">20,000,0.00元</div>
+                                    <div style="color: red;font-size: 20px;">${irbi.amount}元</div>
                                 </div>
                             </div>
                             <div class="am-u-sm-12 am-u-md-1">
@@ -116,7 +116,7 @@
                             <div class="am-u-sm-12 am-u-md-3">
                                 <div class="am-u-sm-12" style="text-align: center;font-weight: bold;">
                                     <div>历史已开票</div>
-                                    <div style="color: red;font-size: 20px;">10,000,0.00元</div>
+                                    <div style="color: red;font-size: 20px;">${order.totalamount}元</div>
                                 </div>
                             </div>
                         </div>
@@ -145,27 +145,26 @@
                         <div class="am-g tpl-amazeui-form" style="font-size: 14px;color: #666;margin-bottom: 5px;">
                             <div class="am-u-sm-12 am-u-md-6">
                                 <div class="am-u-sm-12">
-                                    <span style="color: #333;">抬头（默认）：</span> <span>百度科技有限公司</span>
+                                    <span style="color: #333;">抬头（默认）：</span> <span name="title"></span>
                                 </div>
                             </div>
                             <div class="am-u-sm-12 am-u-md-6">
                                 <div class="am-u-sm-12">
-                                    <span style="color: #333;">税号：</span> <span>91110000802100XXXX</span>
+                                    <span style="color: #333;">税号：</span> <span name="taxno"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="am-g tpl-amazeui-form" style="font-size: 14px;color: #666;margin-bottom: 5px;">
                             <div class="am-u-sm-12 am-u-md-6">
                                 <div class="am-u-sm-12">
-                                    <span style="color: #333;">邮寄地址（默认）：</span> <span>北京市海淀区百度大厦</span>
+                                    <span style="color: #333;">邮寄地址（默认）：</span> <span name="address"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="am-g tpl-amazeui-form" style="font-size: 14px;color: #666;">
                             <div class="am-u-sm-12 am-u-md-6">
                                 <div class="am-u-sm-12">
-                                    <span style="color: #333;">电子邮箱：</span> <span>
-                                            2134566876756453@qq.com</span>
+                                    <span style="color: #333;">电子邮箱：</span> <span name="email"></span>
                                 </div>
                             </div>
 
@@ -391,6 +390,39 @@
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
+
+    var enterpriseid = ${u.enterpriseid};
+
+    $(document).ready(function () {
+        //发票抬头及地址信息  抬头、税号
+        $.get("bds","i=1&enterpriseid="+enterpriseid,function (basedata1) {
+            eval("var queryone=" + basedata1);
+            $("[name=title]").text(queryone.title);
+            $("[name=taxno]").text(queryone.taxno);
+        });
+
+        //用户名
+        var name = "${u.name}";
+        $("[name=name]").text(name);
+
+    });
+
+    $(function () {
+        //发票抬头及地址信息  邮寄地址
+        $.get("ads","i=1&enterpriseid="+enterpriseid,function (address) {
+            eval("var address="+address);
+            $("[name=address]").text(address.addressdetail);
+        });
+    });
+
+    $(function () {
+        //发票抬头及地址信息  电子邮箱
+        $.get("es","i=1&enterpriseid="+enterpriseid,function (email) {
+            eval("var email="+email);
+            $("[name=email]").text(email.emaildetail);
+        });
+    });
+
     // 退票二次确认
     $(function () {
         //状态按钮样式切换
@@ -406,7 +438,7 @@
                 relatedTarget: this,
                 onConfirm: function (options) {
                     //点击确认调用函数
-                    alert("点击了确认");
+                    alert(${enterpriseid});
                 },
                 onCancel: function () {
                     //点击取消调用函数
