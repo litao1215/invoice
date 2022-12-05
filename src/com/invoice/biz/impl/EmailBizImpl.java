@@ -21,7 +21,7 @@ public class EmailBizImpl implements IEmailBiz {
 
     @Override
     public boolean modifyEmail(Email email) {
-        return false;
+        return ebi.updateByid(email)==0?false:true;
     }
 
     @Override

@@ -434,7 +434,22 @@
         $("#Type" + key).attr("disabled", false);
         $("#defaultV" + key).attr("disabled", false);
         var div1 = $("#operate" + key);
-        div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="saveInterfaceParam();">保存</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;"  onclick="saveInterfaceParam();">取消</a>';
+        div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="saveUpdateInterfaceParam();">保存</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;"  onclick="saveInterfaceParam();">取消</a>';
+    }
+
+    function saveUpdateInterfaceParam() {
+        var td = event.srcElement; // 通过event.srcElement 获取激活事件的对象 td
+        //获取行索引，修改input样式，其中parentElement和table中的标签层级相关，不是一成不变
+        var key = td.parentElement.parentElement.parentElement.innerText.split("\n")[0].trim();
+        $("#Name" + key).attr("disabled", true);
+        $("#No" + key).attr("disabled", true);
+        $("#Type" + key).attr("disabled", true);
+        $("#defaultV" + key).attr("disabled", true);
+        var div1 = $("#operate" + key);
+        $.get("es","i=4&id="+key+"&emaildetail="+$("#Name"+key).val(),function (s) {
+            eval("var s="+s);
+        });
+        div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="editInterfaceParam()">编辑</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;">设为默认</a>';
     }
 
     // 邮寄地址
@@ -474,7 +489,6 @@
         $.get("ads","i=3&enterpriseid="+enterpriseid+"&addressee="+$("#Name"+key).val()+"&phone="+$("#No" + key).val()+"&area="+$("#Type" + key).val()+"&addressdetail="+$("#defaultV" + key).val(),function (s) {
             eval("var s="+s);
         });
-
         div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="editAddress()">编辑</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;">设为默认</a>';
     }
 
@@ -486,7 +500,22 @@
         $("#Type" + key).attr("disabled", false);
         $("#defaultV" + key).attr("disabled", false);
         var div1 = $("#operate" + key);
-        div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="saveAddress();">保存</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;"  onclick="saveAddress();">取消</a>';
+        div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="saveUpdateAddress();">保存</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;"  onclick="saveAddress();">取消</a>';
+    }
+
+    function saveUpdateAddress() {
+        var td = event.srcElement; // 通过event.srcElement 获取激活事件的对象 td
+        //获取行索引，修改input样式，其中parentElement和table中的标签层级相关，不是一成不变
+        var key = td.parentElement.parentElement.parentElement.innerText.split("\n")[0].trim();
+        $("#Name" + key).attr("disabled", true);
+        $("#No" + key).attr("disabled", true);
+        $("#Type" + key).attr("disabled", true);
+        $("#defaultV" + key).attr("disabled", true);
+        var div1 = $("#operate" + key);
+        $.get("ads","i=4&id="+key+"&addressee="+$("#Name"+key).val()+"&phone="+$("#No" + key).val()+"&area="+$("#Type" + key).val()+"&addressdetail="+$("#defaultV" + key).val(),function (s) {
+            eval("var s="+s);
+        });
+        div1[0].innerHTML = '<a style="cursor:pointer;color:#007bff;"  onclick="editAddress()">编辑</a>&nbsp;&nbsp;<a style="cursor:pointer;color:#007bff;">设为默认</a>';
     }
 </script>
 </body>

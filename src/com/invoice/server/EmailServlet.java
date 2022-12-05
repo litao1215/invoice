@@ -1,10 +1,7 @@
 package com.invoice.server;
 
 import com.google.gson.Gson;
-import com.invoice.biz.impl.AddressBizImpl;
 import com.invoice.biz.impl.EmailBizImpl;
-import com.invoice.dao.impl.EmailDaoImpl;
-import com.invoice.entry.Address;
 import com.invoice.entry.Email;
 
 import javax.servlet.ServletException;
@@ -37,6 +34,8 @@ public class EmailServlet extends HttpServlet {
             showEmail(request, response);
         }else if(i==3){
             insertEmail(request, response);
+        }else if (i==4){
+            updateEmail(request,response);
         }
     }
 
@@ -82,4 +81,21 @@ public class EmailServlet extends HttpServlet {
         List<Email> emaillist = ebi.queryEmail(enterpriseid);
         response.getWriter().println(new Gson().toJson(emaillist));
     }
+
+    public void updateEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        String emaildetail = request.getParameter("emaildetail");
+        Email email=new Email();
+        email.setId(id);
+        email.setEmaildetail(emaildetail);
+        boolean boo=ebi.modifyEmail(email);
+        String s="false";
+        if (boo){
+            response.getWriter().print(new Gson().toJson(s));
+        }else {
+            response.getWriter().print(new Gson().toJson(s));
+        }
+    }
+
+
 }

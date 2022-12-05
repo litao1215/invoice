@@ -27,7 +27,7 @@ public class AddressBizImpl implements IAddressBiz {
 
     @Override
     public boolean modifyAddress(Address address) {
-        return false;
+        return adi.updateByid(address)==0?false:true;
     }
 
     @Override

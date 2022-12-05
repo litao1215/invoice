@@ -80,7 +80,27 @@ public class AddressDaoImpl implements IAddressDao {
 
     @Override
     public int updateByid(Address address) {
-        return 0;
+        int num=0;
+        try {
+            con= DBHelper.getconn();
+            String sql="UPDATE address SET addressee=?,phone=?,area=?,address_detail=? WHERE id=?";
+            ps=con.prepareStatement(sql);
+            ps.setString(1,address.getAddressee());
+            ps.setString(2,address.getPhone());
+            ps.setString(3,address.getArea());
+            ps.setString(4,address.getAddressdetail());
+            ps.setInt(5,address.getId());
+            num=ps.executeUpdate();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return num;
     }
 
     @Override

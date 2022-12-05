@@ -36,6 +36,8 @@ public class AddressServlet extends HttpServlet {
             showAddress(request,response);
         }else if (i==3){
             insertAddress(request,response);
+        }else if (i==4){
+            updateAddress(request,response);
         }
 
     }
@@ -84,6 +86,27 @@ public class AddressServlet extends HttpServlet {
             showAddress(request,response);
         }else {
             response.getWriter().println(new Gson().toJson(s));
+        }
+    }
+
+    public void updateAddress(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        String addressee = request.getParameter("addressee");
+        String phone = request.getParameter("phone");
+        String area=request.getParameter("area");
+        String addressdetail = request.getParameter("addressdetail");
+        Address address=new Address();
+        address.setId(id);
+        address.setAddressee(addressee);
+        address.setPhone(phone);
+        address.setArea(area);
+        address.setAddressdetail(addressdetail);
+        boolean boo=abi.modifyAddress(address);
+        String s="false";
+        if (boo){
+            response.getWriter().print(new Gson().toJson(s));
+        }else {
+            response.getWriter().print(new Gson().toJson(s));
         }
     }
 }

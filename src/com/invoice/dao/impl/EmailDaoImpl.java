@@ -47,7 +47,24 @@ public class EmailDaoImpl implements IEmailDao {
 
     @Override
     public int updateByid(Email email) {
-        return 0;
+        int num=0;
+        try {
+            con= DBHelper.getconn();
+            String sql="UPDATE email SET email_detail=? WHERE id=?";
+            ps=con.prepareStatement(sql);
+            ps.setString(1,email.getEmaildetail());
+            ps.setInt(2,email.getId());
+            num=ps.executeUpdate();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DBHelper.closeAll(rs,ps,con);
+        }
+        return num;
     }
 
     @Override
